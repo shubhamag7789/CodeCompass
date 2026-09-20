@@ -1,0 +1,32 @@
+# Secrets / environment — never commit real keys. The template .env.example is tracked.
+.env
+.env.*
+!.env.example
+
+# RepoMind and CodeCompass generated artifacts
+.repomind/
+.codecompass/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+
+# Node / frontend tooling
+node_modules/
+
+# Logs
+*.log
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
