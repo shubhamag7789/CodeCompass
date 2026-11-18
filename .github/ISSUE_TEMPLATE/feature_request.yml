@@ -1,0 +1,45 @@
+name: 💡 Feature Request
+description: Suggest an idea or improvement for CodeCompass
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the idea! Please keep in mind CodeCompass's core constraint:
+        **robust offline-first intelligence.**
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: Describe the use case or pain point.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What would you like CodeCompass to do?
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: dropdown
+    id: philosophy
+    attributes:
+      label: Does this preserve the zero-dependency / offline-first philosophy?
+      options:
+        - "Yes — standard library only, no required services"
+        - "It would need an optional, gated integration"
+        - "Not sure — let's discuss"
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Confirmation
+      options:
+        - label: I searched existing issues and this is not a duplicate.
+          required: true
