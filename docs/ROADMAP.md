@@ -1,6 +1,6 @@
 # Roadmap
 
-RepoMind's guiding constraint never changes: **zero third‑party dependencies and an offline‑first default.** Every item below must degrade gracefully with no configuration and add no required infrastructure.
+CodeCompass's guiding constraint never changes: **zero third‑party dependencies and an offline‑first default.** Every item below must degrade gracefully with no configuration and add no required infrastructure.
 
 ## ✅ v0.1.0 — Local MVP (current)
 
@@ -42,4 +42,4 @@ These activate only when a user opts in; the MVP never requires them.
 
 To protect the zero‑infrastructure promise, the default install will **not** require: Docker, a database, Redis, a message queue (e.g. Celery), a web framework (e.g. FastAPI), or authentication infrastructure (e.g. JWT). Such tools may appear only as **optional**, clearly‑gated integrations.
 
-> Have an idea? Open a [feature request](https://github.com/Philipcyrus/RepoMind/issues/new/choose).
+> Have an idea? Open a [feature request](https://github.com/shubhamag7789/CodeCompass/issues/new/choose).

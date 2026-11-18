@@ -1,8 +1,8 @@
 blank_issues_enabled: false
 contact_links:
   - name: 💬 Questions & Discussions
-    url: https://github.com/Philipcyrus/RepoMind/discussions
-    about: Ask questions, share ideas, and discuss RepoMind here.
+    url: https://github.com/shubhamag7789/CodeCompass/discussions
+    about: Ask questions, share ideas, and discuss CodeCompass here.
   - name: 📖 Documentation
-    url: https://github.com/Philipcyrus/RepoMind/tree/main/docs
+    url: https://github.com/shubhamag7789/CodeCompass/tree/main/docs
     about: Read the architecture, roadmap, contributing guide, and FAQ.

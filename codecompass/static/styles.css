@@ -648,8 +648,6 @@ button {
   max-width: 82%;
 }
 
-.chat-codecompass,
-.chat-repomind,
 .chat-codecompass {
   align-self: flex-start;
   background: rgba(14, 20, 38, 0.75);

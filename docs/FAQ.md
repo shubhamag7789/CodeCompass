@@ -1,13 +1,13 @@
 # Frequently Asked Questions
 
-### What is RepoMind?
+### What is CodeCompass?
 A zero‑dependency, offline‑first developer tool that turns a repository into a searchable architecture map, an interactive dashboard, and a repository‑aware AI assistant. See the [README](../README.md).
 
 ### Do I need an API key or any external service?
 No. The MVP runs entirely on the Python standard library. Code search (a lexical BM25 index) and the assistant's grounded, cited answers work with **no key and no services**. An OpenRouter key is **optional** and only upgrades the assistant's answers to LLM‑written prose.
 
 ### What are the requirements?
-Python **3.11+**. That's it. `git` is only needed if you want to analyze a **GitHub URL** (RepoMind shallow‑clones it to a temp directory).
+Python **3.11+**. That's it. `git` is only needed if you want to analyze a **GitHub URL** (CodeCompass shallow‑clones it to a temp directory).
 
 ### Which languages does it analyze?
 - **Python** — parsed with the `ast` module (most detailed).
@@ -29,13 +29,13 @@ Answers are **grounded** in retrieved code snippets and always include **file + 
 `/api/chat` keeps a rolling, capped history in **in‑process memory** (a thread‑safe dict — no Redis or database). It resolves follow‑up references like _"it"_, _"that function"_, and _"this module"_ against the previously discussed code, and folds recent turns into both retrieval and the prompt. `/api/ask` remains stateless. Details in [ARCHITECTURE.md](ARCHITECTURE.md).
 
 ### Where is the analysis stored?
-Two JSON files under `.repomind/`: `analysis.json` (the knowledge map) and `index.json` (the search index). This folder is git‑ignored.
+Two JSON files under `.codecompass/`: `analysis.json` (the knowledge map) and `index.json` (the search index). This folder is git‑ignored.
 
 ### The chat can't find code I just added — why?
-The dashboard reads the on‑disk analysis and index. **Re‑run `python -m repomind analyze .`** (or use the dashboard's Analyze button / `POST /api/analyze`) to refresh them after code changes.
+The dashboard reads the on‑disk analysis and index. **Re‑run `python -m codecompass analyze .`** (or use the dashboard's Analyze button / `POST /api/analyze`) to refresh them after code changes.
 
 ### Why not use Neo4j / Qdrant / Docker / FastAPI?
-To keep RepoMind usable the instant you clone it, with nothing to set up. Those tools are represented as **optional future boundaries** (`integrations/`) and will only ever be opt‑in, never required by the core.
+To keep CodeCompass usable the instant you clone it, with nothing to set up. Those tools are represented as **optional future boundaries** (`integrations/`) and will only ever be opt‑in, never required by the core.
 
 ### Is my code sent anywhere?
 Only if you configure OpenRouter. In that case, the question plus the relevant retrieved snippets and repository summary are sent to OpenRouter to generate an answer. With no key, nothing leaves your machine.

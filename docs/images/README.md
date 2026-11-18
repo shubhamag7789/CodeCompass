@@ -14,8 +14,8 @@ Expected files:
 **How to capture:**
 
 ```bash
-python -m repomind analyze .
-python -m repomind serve
+python -m codecompass analyze .
+python -m codecompass serve
 # open http://127.0.0.1:8765 and capture each tab
 ```
 

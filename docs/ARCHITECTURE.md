@@ -1,13 +1,13 @@
 # Architecture
 
-This document describes how RepoMind v0.1.0 actually works, module by module. It reflects the code in `repomind/` — not aspirational design.
+This document describes how CodeCompass v0.1.0 actually works, module by module. It reflects the code in `codecompass/` — not aspirational design.
 
 ## Design principles
 
 1. **Zero third‑party dependencies.** `pyproject.toml` declares `dependencies = []`. Everything runs on the Python 3.11+ standard library (`ast`, `re`, `http.server`, `urllib`, `threading`, `uuid`, `json`, `hashlib`).
 2. **Offline‑first.** No Neo4j, Qdrant, Docker, database, or queue is required. No LLM key is required.
 3. **Graceful enhancement.** Optional integrations (currently OpenRouter) light up when configured and degrade cleanly when not.
-4. **Single artifact.** Analysis is a plain JSON file (`.repomind/analysis.json`); the search index is a sibling (`.repomind/index.json`).
+4. **Single artifact.** Analysis is a plain JSON file (`.codecompass/analysis.json`); the search index is a sibling (`.codecompass/index.json`).
 
 ## High‑level pipeline
 
@@ -29,7 +29,7 @@ Repository ──► analyzer.py ──► analysis.json ──► server.py ─
 - `analyze <target> [--output PATH] [--json]` — analyzes a local path or a GitHub URL. If the target looks like a URL, it shallow‑clones with `git` into a temporary directory (cleaned up afterward). Writes `analysis.json` and builds/writes `index.json`.
 - `serve [--analysis PATH] [--host HOST] [--port PORT]` — starts the dashboard server.
 
-Console entry point: `repomind = repomind.cli:main` (see `pyproject.toml`). `python -m repomind` routes through `__main__.py`.
+Console entry point: `codecompass = codecompass.cli:main` (see `pyproject.toml`). `python -m codecompass` routes through `__main__.py`.
 
 ### `analyzer.py` — parsing and the knowledge graph
 The core. `analyze_repository(target)` returns a dict with:
@@ -104,10 +104,10 @@ The stubs document the contract; they are not used by the MVP and require no ser
 
 | File | Written by | Contents |
 | --- | --- | --- |
-| `.repomind/analysis.json` | `analyzer.write_analysis` | Full knowledge map. |
-| `.repomind/index.json` | `retrieval.write_index` | BM25 chunk index. |
+| `.codecompass/analysis.json` | `analyzer.write_analysis` | Full knowledge map. |
+| `.codecompass/index.json` | `retrieval.write_index` | BM25 chunk index. |
 
-Both live under `.repomind/`, which is git‑ignored. Re‑run `analyze` after code changes so retrieval reflects the latest code.
+Both live under `.codecompass/`, which is git‑ignored. Re‑run `analyze` after code changes so retrieval reflects the latest code.
 
 ## Testing
 `tests/` uses the standard‑library `unittest` (no pytest required):

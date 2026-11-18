@@ -5,7 +5,7 @@ description = "AI-powered developer onboarding and codebase intelligence platfor
 requires-python = ">=3.11"
 readme = "README.md"
 license = { text = "MIT" }
-authors = [{ name = "Philipcyrus" }]
+authors = [{ name = "Shubham Agarwal", email = "shubhamagarwal47910@gmail.com" }]
 keywords = [
     "code-analysis",
     "codebase",
@@ -37,8 +37,8 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/Philipcyrus/CodeCompass"
-Repository = "https://github.com/Philipcyrus/CodeCompass"
+Homepage = "https://github.com/shubhamag7789/CodeCompass"
+Repository = "https://github.com/shubhamag7789/CodeCompass"
 
 [project.scripts]
 codecompass = "codecompass.cli:main"

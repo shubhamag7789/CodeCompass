@@ -50,7 +50,7 @@ class OpenRouterAssistant:
             headers={
                 "Authorization": f"Bearer {self.api_key}",
                 "Content-Type": "application/json",
-                "HTTP-Referer": "https://github.com/Philipcyrus/CodeCompass",
+                "HTTP-Referer": "https://github.com/shubhamag7789/CodeCompass",
                 "X-Title": "CodeCompass",
             },
             method="POST",

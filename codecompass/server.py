@@ -1000,7 +1000,3 @@ def serve_dashboard(analysis_path: Path, host: str = "127.0.0.1", port: int = 87
         pass
     finally:
         server.server_close()
-
-
-# Compatibility alias
-RepoMindHandler = CodeCompassHandler

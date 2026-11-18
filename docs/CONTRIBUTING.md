@@ -1,12 +1,12 @@
-# Contributing to RepoMind
+# Contributing to CodeCompass
 
-Thanks for your interest in improving RepoMind! This project aims to be a polished, dependency‑free developer tool, and contributions of all sizes are welcome.
+Thanks for your interest in improving CodeCompass! This project aims to be a polished, dependency‑free developer tool, and contributions of all sizes are welcome.
 
 Please also read our [Code of Conduct](../CODE_OF_CONDUCT.md).
 
 ## The golden rule
 
-**Keep RepoMind zero‑dependency and offline‑first.**
+**Keep CodeCompass zero‑dependency and offline‑first.**
 
 - `pyproject.toml` must keep `dependencies = []`. Use the Python standard library.
 - No new required infrastructure — no Docker, database, Redis, message queue, web framework, or auth system.
@@ -19,12 +19,12 @@ If a change seems to need a dependency or a service, open an issue first so we c
 Requirements: **Python 3.11+**. No install step is needed to run from source.
 
 ```bash
-git clone https://github.com/Philipcyrus/RepoMind.git
-cd RepoMind
+git clone https://github.com/shubhamag7789/CodeCompass.git
+cd CodeCompass
 
 # Run it
-python -m repomind analyze .
-python -m repomind serve
+python -m codecompass analyze .
+python -m codecompass serve
 
 # Optional: install the CLI entry point in editable mode
 pip install -e .
@@ -32,7 +32,7 @@ pip install -e .
 
 ## Running the tests
 
-RepoMind uses the standard‑library `unittest` runner (no pytest, no plugins):
+CodeCompass uses the standard‑library `unittest` runner (no pytest, no plugins):
 
 ```bash
 python -B -m unittest discover -s tests -v
@@ -44,11 +44,11 @@ All tests must pass and run **without network access** — the OpenRouter path i
 
 See [ARCHITECTURE.md](ARCHITECTURE.md) for a module‑by‑module tour. In short:
 
-- `repomind/analyzer.py` — parsing → knowledge graph (the heart of the tool)
-- `repomind/retrieval.py` — BM25 search
-- `repomind/assistant.py` / `conversation.py` — grounded Q&A and multi‑turn memory
-- `repomind/server.py` + `repomind/static/` — dashboard and JSON API
-- `repomind/integrations/` — optional, gated boundaries
+- `codecompass/analyzer.py` — parsing → knowledge graph (the heart of the tool)
+- `codecompass/retrieval.py` — BM25 search
+- `codecompass/assistant.py` / `conversation.py` — grounded Q&A and multi‑turn memory
+- `codecompass/server.py` + `codecompass/static/` — dashboard and JSON API
+- `codecompass/integrations/` — optional, gated boundaries
 
 ## Making a change
 
@@ -56,7 +56,7 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for a module‑by‑module tour. In short
 2. Create a branch from `main`.
 3. Keep changes focused. Match the surrounding style (type hints, `from __future__ import annotations`, small helpers).
 4. **Add or update tests** for behavior changes.
-5. If you touch analysis output, remember to re‑run `analyze` — the dashboard reads `.repomind/analysis.json`.
+5. If you touch analysis output, remember to re‑run `analyze` — the dashboard reads `.codecompass/analysis.json`.
 6. Update docs (`README.md`, `docs/`) when behavior or interfaces change.
 7. Run the test suite and make sure it's green.
 8. Open a pull request using the [PR template](../.github/PULL_REQUEST_TEMPLATE.md) and describe **what** and **why**.
@@ -72,8 +72,8 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for a module‑by‑module tour. In short
 
 Use the issue templates:
 
-- 🐞 [Bug report](https://github.com/Philipcyrus/RepoMind/issues/new/choose)
-- 💡 [Feature request](https://github.com/Philipcyrus/RepoMind/issues/new/choose)
+- 🐞 [Bug report](https://github.com/shubhamag7789/CodeCompass/issues/new/choose)
+- 💡 [Feature request](https://github.com/shubhamag7789/CodeCompass/issues/new/choose)
 
 ## License
 

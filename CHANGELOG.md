@@ -1,31 +1,29 @@
 # Changelog
 
-All notable changes to RepoMind are documented in this file.
+All notable changes to CodeCompass are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.1.0] — 2026-07-18
-
-First public release: the local, offline‑first MVP.
+## [0.3.0] — 2026-11-19
 
 ### Added
-- **Repository analyzer** (`analyzer.py`) — builds a knowledge graph (directories, files, classes, functions, methods, imports, calls, inheritance, tests, external dependencies) plus a repository summary, primary components, architecture layers, and detected entry points.
-- **Language parsing** — Python via the `ast` module; JavaScript, TypeScript, JSX, TSX, and Java via lightweight parsers.
-- **API map** — detection for FastAPI, Flask, Express, Next.js route handlers, and Spring.
-- **Onboarding guide** — auto‑generated "where to start" guide.
-- **Change impact analysis** — per‑node affected files, APIs, and tests with a Low/Medium/High risk rating (2‑hop reverse dependency walk).
-- **Zero‑dependency code search** (`retrieval.py`) — in‑process **lexical** BM25 index with identifier‑aware tokenization and structural boosts (no embeddings).
-- **Repository‑aware AI chat** (`assistant.py`) — retrieval‑grounded answers with file + line citations, and a local extractive fallback when no key is configured.
-- **Multi‑turn conversations** (`conversation.py`) — in‑process, capped conversation memory with follow‑up reference resolution (`it`, `that function`, `this module`) and context‑aware retrieval.
-- **Optional OpenRouter integration** (`integrations/llm.py`) — standard‑library `urllib` client, active only when `OPENROUTER_API_KEY` is set.
-- **Dashboard + JSON API** (`server.py`, `static/`) — standard‑library HTTP server with `/api/analysis`, `/api/impact`, `/api/analyze`, `/api/ask`, `/api/chat`, and a vanilla HTML/CSS/JS UI (Overview, Graph, APIs, Impact, Guide).
-- **CLI** — `repomind analyze` and `repomind serve` (plus `python -m repomind`).
-- **Optional integration boundaries** — Neo4j (`graph_store.py`) and Qdrant (`vector_store.py`) stubs documenting future, opt‑in backends.
-- **Test suite** — standard‑library `unittest` covering the analyzer, retrieval, assistant/LLM wiring, and multi‑turn conversations.
+- **Multi-Tenant User Isolation & Auth**: PBKDF2-HMAC-SHA256 salted password hashing, 64-character session bearer tokens, and per-user database partitioning.
+- **Self-Contained Security Recovery**: Offline account recovery using salted security questions and 4-word mnemonic recovery passphrases with zero external SMTP dependencies.
+- **In-App Security Modal**: User profile dropdown modal to review, change, and update security questions and recovery keys directly from the dashboard.
+- **Tree-sitter AST Engines**: High-performance AST parsing across Python, TypeScript, TSX, and JavaScript.
+- **Universal Route Discovery**: Automated detection for NestJS decorators (`@Controller`, `@Get`, `@Post`), Express, Fastify, Next.js, and Flask.
+- **Modern React + Vite Dashboard**: Built on React 18, TypeScript, Tailwind CSS, and `@xyflow/react` for interactive dependency graph visualization.
 
-### Notes
-- No third‑party dependencies (`pyproject.toml` declares `dependencies = []`).
-- No external infrastructure required; no LLM key required.
+## [0.2.0] — 2026-10-15
 
-[0.1.0]: https://github.com/Philipcyrus/RepoMind/releases/tag/v0.1.0
+### Added
+- **SQLite WAL Storage**: High-performance relational database storage (`codecompass.db`) with Write-Ahead Logging and automatic schema migrations.
+- **2-Hop Blast Radius Engine**: Change impact analysis evaluating upstream affected files, endpoints, and test suites with risk scoring.
+- **Feature Flow Tracer**: End-to-end execution flow diagrams tracing routes down to models.
+- **Role-Based Onboarding Roadmaps**: Dynamic Day 1–3 guides tailored for Frontend, Backend, Fullstack, and QA roles.
+
+## [0.1.0] — 2026-09-20
+
+### Added
+- Initial project architecture, CLI interface, and Okapi BM25 lexical ranking engine.

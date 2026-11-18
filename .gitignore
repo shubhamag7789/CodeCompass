@@ -3,8 +3,7 @@
 .env.*
 !.env.example
 
-# RepoMind and CodeCompass generated artifacts
-.repomind/
+# CodeCompass generated artifacts
 .codecompass/
 
 # Python

@@ -18,7 +18,6 @@ DEFAULT_IGNORED_DIRS: Final[set[str]] = {
     ".hg",
     ".svn",
     ".codecompass",
-    ".repomind",
     ".venv",
     "venv",
     "env",
