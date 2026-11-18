@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CodeCompass — Codebase Intelligence & Onboarding</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-logo">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" fill="#3b82f6" stroke="none"></polygon>
+              <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <strong>CodeCompass</strong>
+            <span class="brand-sub">Workspace Architecture</span>
+          </div>
+        </div>
+
+        <!-- REPO SELECTOR IN SIDEBAR -->
+        <div class="repo-selector-card">
+          <div class="repo-label">CURRENT REPOSITORY</div>
+          <div class="active-repo-badge" id="sidebarRepoBadge">
+            <span class="repo-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+            </span>
+            <div class="repo-name-group">
+              <strong id="repoName">Loading...</strong>
+              <span id="repoSourceType" class="repo-source-tag">local</span>
+            </div>
+          </div>
+          <button type="button" class="btn-import-repo" id="btnOpenImportModal">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            Switch / Import Repo
+          </button>
+        </div>
+
+        <nav class="tabs" aria-label="Dashboard sections">
+          <button class="tab active" data-view="overview">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+            Overview
+          </button>
+          <button class="tab" data-view="graph">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><line x1="9" y1="6" x2="18" y2="12"></line><line x1="9" y1="18" x2="18" y2="12"></line><circle cx="18" cy="12" r="3"></circle></svg>
+            Dependency Graph
+          </button>
+          <button class="tab" data-view="files">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            File Explorer
+          </button>
+          <button class="tab" data-view="apis">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            API Map
+          </button>
+          <button class="tab" data-view="flows">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+            Feature Flows
+          </button>
+          <button class="tab" data-view="impact">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            Impact Analysis
+          </button>
+          <button class="tab" data-view="guide">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            Onboarding Guide
+          </button>
+        </nav>
+
+        <div class="sidebar-footer">
+          <div class="badge-status">
+            <span class="status-dot"></span>
+            <span>Engine: SQLite WAL</span>
+          </div>
+          <div class="engine-ver">CodeCompass v0.2.0</div>
+        </div>
+      </aside>
+
+      <!-- WORKSPACE -->
+      <main class="workspace">
+        <header class="topbar">
+          <div class="topbar-left">
+            <div class="topbar-breadcrumb">
+              <span class="breadcrumb-item" id="topbarRepoBreadcrumb">Repository</span>
+              <span class="breadcrumb-separator">/</span>
+              <span class="breadcrumb-current" id="topbarViewBreadcrumb">Overview</span>
+            </div>
+            <h1 id="headline">Analyzing repository architecture...</h1>
+          </div>
+          <div class="topbar-right">
+            <button type="button" class="btn-primary" id="btnHeaderImport">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              Import Repository
+            </button>
+          </div>
+        </header>
+
+        <!-- VIEW: OVERVIEW -->
+        <section class="view active" id="overview">
+          <div class="metric-grid" id="metrics"></div>
+
+          <div class="split">
+            <section class="panel">
+              <div class="panel-header">
+                <div class="panel-title">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+                  Architecture Layers
+                </div>
+              </div>
+              <div class="layer-flow" id="layerFlow"></div>
+            </section>
+
+            <section class="panel chat-panel">
+              <div class="panel-header">
+                <div class="panel-title">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                  CodeCompass Assistant
+                  <span id="aiModelBadge" class="ai-status-badge ai-status-gemini" title="Active AI Assistant Engine">● Gemini 3.5 Flash Lite</span>
+                </div>
+                <button type="button" id="chatReset" class="btn-ghost" title="Reset Conversation">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"></polyline><polyline points="23 20 23 14 17 14"></polyline><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"></path></svg>
+                  Reset
+                </button>
+              </div>
+
+              <!-- Suggested prompts -->
+              <div class="prompt-chips">
+                <button class="chip" data-prompt="Where is authentication handled?">Auth Flow</button>
+                <button class="chip" data-prompt="Explain the core architectural layers">Architecture</button>
+                <button class="chip" data-prompt="What are the entry points to this codebase?">Entry Points</button>
+                <button class="chip" data-prompt="What are the highest risk components?">Risk & Impact</button>
+              </div>
+
+              <div class="chat-log" id="chatLog"></div>
+
+              <form id="questionForm" class="question-form">
+                <div class="input-with-button">
+                  <input id="questionInput" type="text" placeholder="Ask anything about this codebase..." aria-label="Codebase question" />
+                  <button type="submit" id="btnAsk">
+                    <span>Ask</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                  </button>
+                </div>
+              </form>
+            </section>
+          </div>
+
+          <section class="panel">
+            <div class="panel-header">
+              <div class="panel-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                Primary Components & Modules
+              </div>
+            </div>
+            <div class="component-list" id="components"></div>
+          </section>
+        </section>
+
+        <!-- VIEW: GRAPH -->
+        <section class="view" id="graph">
+          <section class="graph-toolbar">
+            <div class="toolbar-row-top">
+              <div class="graph-level-badge">
+                <span class="level-indicator-dot"></span>
+                <span id="graphLevelIndicator">Level 1: Repository Overview</span>
+              </div>
+              <div class="graph-nav-actions">
+                <button type="button" class="btn-ghost" id="btnResetToOverview" title="Return to top-level repository overview">⟲ Return to Overview</button>
+                <button type="button" class="btn-ghost" id="btnFitScreen" title="Fit visible nodes to canvas">⊡ Fit Screen</button>
+                <div class="zoom-controls">
+                  <button type="button" id="btnZoomIn" title="Zoom In">+</button>
+                  <button type="button" id="btnZoomOut" title="Zoom Out">−</button>
+                  <button type="button" id="btnResetZoom" title="Reset View Scale">100%</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="toolbar-row-bottom">
+              <div class="segmented" role="group" aria-label="Graph filter">
+                <button class="segment active" data-filter="all">All</button>
+                <button class="segment" data-filter="Directory">Directories</button>
+                <button class="segment" data-filter="File">Files</button>
+                <button class="segment" data-filter="Class">Classes</button>
+                <button class="segment" data-filter="Function">Functions</button>
+                <button class="segment" data-filter="API">APIs</button>
+              </div>
+
+              <div class="graph-edge-toggles">
+                <label class="toggle-chip"><input type="checkbox" id="toggleHierarchy" checked /> Containment</label>
+                <label class="toggle-chip"><input type="checkbox" id="toggleIncoming" checked /> Inward Calls</label>
+                <label class="toggle-chip"><input type="checkbox" id="toggleOutgoing" checked /> Outward Calls</label>
+              </div>
+
+              <div class="graph-search-container">
+                <div class="graph-search-box">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                  <input id="graphSearch" type="search" placeholder="Search and jump to node..." aria-label="Search nodes" autocomplete="off" />
+                </div>
+                <div class="search-results-dropdown" id="searchResultsDropdown"></div>
+              </div>
+            </div>
+          </section>
+
+          <div class="canvas-container">
+            <canvas id="graphCanvas" aria-label="Repository dependency graph"></canvas>
+            <div class="canvas-hint-banner">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              <span>Click a Directory or File to expand contents. Click any symbol to inspect callers and dependencies.</span>
+            </div>
+            
+            <!-- Side drawer on node selection -->
+            <div class="node-inspector" id="nodeInspector">
+              <div class="inspector-placeholder">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                <p>Click any node in the graph to inspect details, incoming calls, and dependencies.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- VIEW: FILE EXPLORER -->
+        <section class="view" id="files">
+          <div class="file-explorer-layout">
+            <aside class="file-tree-panel">
+              <div class="panel-header file-tree-header">
+                <div class="panel-title">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                  <span>Repository Files</span>
+                  <span class="file-count-badge" id="fileCountBadge">0 files</span>
+                </div>
+              </div>
+              <div class="file-search-box">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input id="fileFilterInput" type="search" placeholder="Filter files (e.g. auth, api, jsx)..." />
+              </div>
+              <div class="file-tree-list" id="fileTreeList"></div>
+            </aside>
+            <section class="code-viewer-panel">
+              <div class="code-viewer-header" id="codeViewerHeader">
+                <div class="code-header-left">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                  <span id="codeViewerPath">Select a file from the explorer to preview</span>
+                </div>
+                <div class="code-header-actions">
+                  <span id="codeViewerLines" class="code-line-badge"></span>
+                  <button type="button" class="btn-copy-code" id="btnCopyFileCode" title="Copy file contents">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                    <span>Copy</span>
+                  </button>
+                </div>
+              </div>
+              <div class="code-viewer-body">
+                <pre class="code-content"><code id="codeContent">// Select a file from the explorer on the left to inspect its code.</code></pre>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <!-- VIEW: APIS -->
+        <section class="view" id="apis">
+          <section class="panel">
+            <div class="panel-header">
+              <div class="panel-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                Detected HTTP Endpoints
+              </div>
+              <div class="table-search-box">
+                <input id="apiSearch" type="search" placeholder="Filter routes by method, path, or file..." aria-label="Filter routes" />
+              </div>
+            </div>
+            <div class="api-table" id="apiTable"></div>
+          </section>
+        </section>
+
+        <!-- VIEW: IMPACT -->
+        <section class="view" id="impact">
+          <section class="panel">
+            <div class="panel-header impact-panel-header">
+              <div class="panel-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                <span>Change Impact &amp; Blast Radius Explorer</span>
+              </div>
+              <div class="impact-controls-bar">
+                <div class="impact-search-wrapper">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                  <input type="search" id="impactSearchInput" placeholder="Filter targets (e.g. auth, user, token)..." />
+                </div>
+                <div class="impact-filter-pills" id="impactFilterPills">
+                  <button type="button" class="impact-pill active" data-filter="all">All</button>
+                  <button type="button" class="impact-pill" data-filter="High">High Risk</button>
+                  <button type="button" class="impact-pill" data-filter="Medium">Medium Risk</button>
+                  <button type="button" class="impact-pill" data-filter="API">APIs</button>
+                  <button type="button" class="impact-pill" data-filter="Function">Functions</button>
+                </div>
+                <div class="impact-select-wrapper">
+                  <select id="impactSelect" aria-label="Impact target"></select>
+                </div>
+              </div>
+            </div>
+            <div class="impact-layout" id="impactLayout"></div>
+          </section>
+        </section>
+
+        <!-- VIEW: FLOWS -->
+        <section class="view" id="flows">
+          <section class="panel">
+            <div class="panel-header">
+              <div class="panel-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                Feature Flow Tracer
+              </div>
+              <div class="flow-controls-row">
+                <select id="flowPresetSelect" class="flow-preset-select" aria-label="Select entry point flow">
+                  <option value="">Select an API route or Controller...</option>
+                </select>
+                <div class="flow-search-box">
+                  <input id="flowQueryInput" type="search" placeholder="Search feature (e.g. auth, interview, resume)..." />
+                  <button type="button" id="btnTraceFlow" class="btn-primary">Trace Flow</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Flow Summary Hero -->
+            <div class="flow-hero" id="flowHero">
+              <div class="flow-hero-header">
+                <div>
+                  <span class="flow-category-tag" id="flowCategoryTag">EXECUTION TRACE</span>
+                  <h2 id="flowNameHeading">Select or search a feature flow above</h2>
+                </div>
+                <div class="flow-stats-chips" id="flowStatsChips"></div>
+              </div>
+              <div class="flow-view-toggles">
+                <button type="button" class="btn-flow-toggle active" data-flow-mode="steps">Step-by-Step Flow</button>
+                <button type="button" class="btn-flow-toggle" data-flow-mode="mermaid">Mermaid Diagram</button>
+              </div>
+            </div>
+
+            <!-- Flow Content Container -->
+            <div class="flow-body-container">
+              <!-- Steps Timeline -->
+              <div class="flow-steps-timeline" id="flowStepsTimeline">
+                <div class="empty-hint" style="padding: 24px; text-align: center;">Pick a route or type a keyword to trace end-to-end execution.</div>
+              </div>
+
+              <!-- Sequence Diagram / Mermaid Box -->
+              <div class="flow-diagram-container" id="flowDiagramContainer" style="display: none;">
+                <pre class="mermaid-code-box" id="flowMermaidCode"></pre>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <!-- VIEW: GUIDE -->
+        <section class="view" id="guide">
+          <section class="panel">
+            <div class="panel-header">
+              <div class="panel-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="12 8 8 12 12 16 16 12 12 8"></polygon></svg>
+                <span id="guideTitle">Role-Based Developer Onboarding</span>
+              </div>
+              <div class="role-selector-pills" id="rolePills">
+                <button type="button" class="role-pill active" data-role="backend">Backend</button>
+                <button type="button" class="role-pill" data-role="frontend">Frontend</button>
+                <button type="button" class="role-pill" data-role="fullstack">Full-Stack</button>
+                <button type="button" class="role-pill" data-role="devops_qa">DevOps &amp; QA</button>
+              </div>
+            </div>
+
+            <!-- Role Mission Banner -->
+            <div class="role-mission-banner" id="roleMissionBanner">
+              <div class="role-mission-badge" id="roleMissionBadge">BACKEND ROADMAP</div>
+              <h2 id="roleGuideHeading">Loading onboarding roadmap...</h2>
+              <p id="roleGuideMission"></p>
+            </div>
+
+            <div class="onboarding-sections-grid">
+              <!-- Reading Timeline (Day 1 - Day 3) -->
+              <div class="onboarding-col-main">
+                <h3 class="section-subheading">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                  Curated Reading Path (Day 1 to Day 3)
+                </h3>
+                <div class="reading-path-timeline" id="readingPathTimeline"></div>
+              </div>
+
+              <!-- Sidebar: Key APIs, Test Suites & High-Risk Gotchas -->
+              <div class="onboarding-col-side">
+                <div class="role-side-card">
+                  <h4>Key Entry Points &amp; APIs</h4>
+                  <div class="role-side-list" id="roleEntryList"></div>
+                </div>
+
+                <div class="role-side-card">
+                  <h4>Automated Test Suites</h4>
+                  <div class="role-side-list" id="roleTestList"></div>
+                </div>
+
+                <div class="role-side-card card-risk">
+                  <h4>High-Risk Gotchas (Impact Radius)</h4>
+                  <div class="role-side-list" id="roleRiskList"></div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <!-- MODAL: IMPORT / SWITCH REPOSITORY -->
+    <div class="modal-backdrop" id="importModal">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div>
+            <h2>Switch or Import Repository</h2>
+            <p>Analyze any local directory or public GitHub repository.</p>
+          </div>
+          <button type="button" class="modal-close" id="btnCloseImportModal">&times;</button>
+        </div>
+
+        <!-- REPOSITORIES ALREADY ANALYZED -->
+        <div class="modal-section">
+          <h3>Previously Analyzed Repositories</h3>
+          <div class="repo-history-list" id="repoHistoryList">
+            <div class="empty-hint">Loading repositories...</div>
+          </div>
+        </div>
+
+        <!-- IMPORT NEW REPO FORM -->
+        <div class="modal-section">
+          <h3>Import New Repository</h3>
+          <div class="import-tabs">
+            <button type="button" class="import-tab-btn active" data-tab="local">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+              Local Folder
+            </button>
+            <button type="button" class="import-tab-btn" data-tab="github">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+              GitHub URL
+            </button>
+          </div>
+
+          <form id="analyzeForm" class="import-form">
+            <div class="import-tab-content active" id="tabLocal">
+              <label for="localRepoPath">Local directory path:</label>
+              <input id="localRepoPath" type="text" placeholder="e.g. C:\projects\my-app or /home/user/project" />
+            </div>
+
+            <div class="import-tab-content" id="tabGithub">
+              <label for="githubRepoUrl">Public GitHub repository URL:</label>
+              <input id="githubRepoUrl" type="url" placeholder="e.g. https://github.com/pallets/flask" />
+            </div>
+
+            <div class="modal-actions">
+              <div id="importStatusText" class="import-status"></div>
+              <button type="submit" id="btnSubmitImport" class="btn-primary">
+                <span>Analyze & Import</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
